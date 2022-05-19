@@ -1,0 +1,8 @@
+C:\Users\User\PycharmProjects\pythonProject\001. Товары
+MNB BNB
+#C0C0C015
+C:\Users\User\Desktop
+
+//Путь к папке
+//первые 3 буквы артикулей через пробел
+// цвет в rrggbbaa
