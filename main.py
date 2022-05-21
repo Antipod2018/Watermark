@@ -21,24 +21,6 @@ def watermark_text(input_image_path,
 
     photo.save(output_image_path)
 
-def watermark_text2(input_image_path,
-                   output_image_path,
-                   text, image_path, color):
-    photo = Image.open(input_image_path)
-    drawing = ImageDraw.Draw(photo)
-    black = color
-    size=80
-
-    font = ImageFont.truetype("arial.ttf", size)
-    drawing.text((photo.width-len(text)*50, photo.height-size), text, fill=black, font=font)
-
-    t = output_image_path.split('\\')
-    if image_path:
-        image_path = os.path.join(image_path, t[-1])
-        photo.save(image_path)
-    output_image_path = output_image_path[:-4] + '-1.jpg'
-
-    photo.save(output_image_path)
 
 
 
@@ -47,13 +29,14 @@ def InFolder(rootDir, watermark, image_path, text):
         path = os.path.join(rootDir, lists)
 
 
-        if path[len(path) - 4:] == '.jpg':
+        if path[len(path) - 4:] == '.jpg' and path[len(path) - 6:] != '-w.jpg':
+            path2 = path[:-4] + '-w.jpg'
             if len(watermark) == 9:
-                watermark_text2(path, path,
+                watermark_text(path, path2,
                                text=watermark[-4:],
                                image_path=image_path, color=text)
             if len(watermark) == 11:
-                watermark_text2(path, path,
+                watermark_text(path, path2,
                                text=watermark[-6:],
                                image_path=image_path, color=text)
         if os.path.isdir(path):
